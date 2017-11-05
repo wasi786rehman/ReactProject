@@ -3,15 +3,13 @@ export default class App extends React.Component{
     constructor()
     {
         super();
-        this.state={stage:1};
+        this.state={stage:1,heading:"Add Client"};
        
     }
     render()
     {
           var v=this.state.stage;
-          if(v==2)
-           return (<App1  name={this.refs.clientName.value} />)
-           else
+
 
         return(
            
@@ -20,10 +18,10 @@ export default class App extends React.Component{
                 
                 
                 
-                <div className="containerHeader">Add Client</div>
+                <div className="containerHeader">{this.state.heading}</div>
                 <div className="containerBody">
                 {
-                   v==1?<Stage1 handleToUpdate={this.handleToUpdate.bind(this)}/>:<Stage2/>
+                   v==1?<Stage1 handleToUpdate={this.handleToUpdate.bind(this)}/>:<Stage2 name={this.state.v} />
 
                 }
                 </div>
@@ -31,10 +29,14 @@ export default class App extends React.Component{
             </div>
         );
     }
-    handleToUpdate(value)
+    handleToUpdate(value,v,events)
     {
-alert("dsfsd");
-alert(value);
+debugger;
+
+
+
+this.setState({stage:value,heading:"Confirm Client",v:v});
+
     }
     
 }
@@ -42,7 +44,8 @@ alert(value);
     constructor()
     {
         super();
-        this.state={stage:1};
+       
+        this.state={stage:1,events:["Dealers","Contracts","Claims"]};
         
     }
     
@@ -54,10 +57,13 @@ alert(value);
             Client Name *<br/>
                 <input type="text" className="form-control" ref="clientName"/>
                 Select Event/s..*<br/>
-                <input type="checkbox"/>Dealer<br/>
-                <input type="checkbox"/>Contract<br/>
-                <input type="checkbox"/>Claims<br/>
-                <input type="button" className="btn btn-default alignleft"  value="ok" onClick={() => handleToUpdate('someghgjkVar')}/>
+               {this.state.events.map(function(items,i){
+                   return (<div key={i}><input type="checkbox" ref={items} key={i}/>{items} <br/></div>)
+
+               })}
+                
+               
+                <input type="button" className="btn btn-default alignleft"  value="ok" onClick={this.okClick.bind(this)}/>
                 </div>
         );
     }
@@ -65,7 +71,12 @@ alert(value);
     {
      var m=this.state.stage;
      var q=this.refs.clientName.value;
-     
+     var array=[];
+     this.state.events.forEach(function(element) {
+         
+     }, this);
+     console.log(array);
+     this.props.handleToUpdate(2,q);
      
 
     }
@@ -79,7 +90,7 @@ class Stage2 extends React.Component{
     render()
     {
         return(
-           <div>you have selected {this.props.name}</div>
+           <div>you Are Adding Client <b>{this.props.name}</b></div>
         );
     }
 }
@@ -92,7 +103,12 @@ class Stage3 extends React.Component{
     render()
     {
         return(
-           <div>you have selected {this.props.name}</div>
+            <div>
+           <div>You have selected {this.props.name}</div> ANd Selected events are :
+           {this.props.enents.map(function(items,i){
+               <div><b>items</b></div>
+           })}
+           </div>
         );
     }
 }

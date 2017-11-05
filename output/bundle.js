@@ -986,7 +986,7 @@ var App = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
-        _this.state = { stage: 1 };
+        _this.state = { stage: 1, heading: "Add Client" };
 
         return _this;
     }
@@ -995,26 +995,28 @@ var App = function (_React$Component) {
         key: "render",
         value: function render() {
             var v = this.state.stage;
-            if (v == 2) return _react2.default.createElement(App1, { name: this.refs.clientName.value });else return _react2.default.createElement(
+
+            return _react2.default.createElement(
                 "div",
                 { className: "containerApp" },
                 _react2.default.createElement(
                     "div",
                     { className: "containerHeader" },
-                    "Add Client"
+                    this.state.heading
                 ),
                 _react2.default.createElement(
                     "div",
                     { className: "containerBody" },
-                    v == 1 ? _react2.default.createElement(Stage1, { handleToUpdate: this.handleToUpdate.bind(this) }) : _react2.default.createElement(Stage2, null)
+                    v == 1 ? _react2.default.createElement(Stage1, { handleToUpdate: this.handleToUpdate.bind(this) }) : _react2.default.createElement(Stage2, { name: this.state.v })
                 )
             );
         }
     }, {
         key: "handleToUpdate",
-        value: function handleToUpdate(value) {
-            alert("dsfsd");
-            alert(value);
+        value: function handleToUpdate(value, v, events) {
+            debugger;
+
+            this.setState({ stage: value, heading: "Confirm Client", v: v });
         }
     }]);
 
@@ -1031,7 +1033,7 @@ var Stage1 = function (_React$Component2) {
 
         var _this2 = _possibleConstructorReturn(this, (Stage1.__proto__ || Object.getPrototypeOf(Stage1)).call(this));
 
-        _this2.state = { stage: 1 };
+        _this2.state = { stage: 1, events: ["Dealers", "Contracts", "Claims"] };
 
         return _this2;
     }
@@ -1048,18 +1050,17 @@ var Stage1 = function (_React$Component2) {
                 _react2.default.createElement("input", { type: "text", className: "form-control", ref: "clientName" }),
                 "Select Event/s..*",
                 _react2.default.createElement("br", null),
-                _react2.default.createElement("input", { type: "checkbox" }),
-                "Dealer",
-                _react2.default.createElement("br", null),
-                _react2.default.createElement("input", { type: "checkbox" }),
-                "Contract",
-                _react2.default.createElement("br", null),
-                _react2.default.createElement("input", { type: "checkbox" }),
-                "Claims",
-                _react2.default.createElement("br", null),
-                _react2.default.createElement("input", { type: "button", className: "btn btn-default alignleft", value: "ok", onClick: function onClick() {
-                        return handleToUpdate('someghgjkVar');
-                    } })
+                this.state.events.map(function (items, i) {
+                    return _react2.default.createElement(
+                        "div",
+                        { key: i },
+                        _react2.default.createElement("input", { type: "checkbox", ref: items, key: i }),
+                        items,
+                        " ",
+                        _react2.default.createElement("br", null)
+                    );
+                }),
+                _react2.default.createElement("input", { type: "button", className: "btn btn-default alignleft", value: "ok", onClick: this.okClick.bind(this) })
             );
         }
     }, {
@@ -1067,6 +1068,10 @@ var Stage1 = function (_React$Component2) {
         value: function okClick() {
             var m = this.state.stage;
             var q = this.refs.clientName.value;
+            var array = [];
+            this.state.events.forEach(function (element) {}, this);
+            console.log(array);
+            this.props.handleToUpdate(2, q);
         }
     }]);
 
@@ -1091,8 +1096,12 @@ var Stage2 = function (_React$Component3) {
             return _react2.default.createElement(
                 "div",
                 null,
-                "you have selected ",
-                this.props.name
+                "you Are Adding Client ",
+                _react2.default.createElement(
+                    "b",
+                    null,
+                    this.props.name
+                )
             );
         }
     }]);
@@ -1118,8 +1127,24 @@ var Stage3 = function (_React$Component4) {
             return _react2.default.createElement(
                 "div",
                 null,
-                "you have selected ",
-                this.props.name
+                _react2.default.createElement(
+                    "div",
+                    null,
+                    "You have selected ",
+                    this.props.name
+                ),
+                " ANd Selected events are :",
+                this.props.enents.map(function (items, i) {
+                    _react2.default.createElement(
+                        "div",
+                        null,
+                        _react2.default.createElement(
+                            "b",
+                            null,
+                            "items"
+                        )
+                    );
+                })
             );
         }
     }]);
