@@ -5,7 +5,8 @@
   "author": "",
   "license": "ISC",
   "scripts":{
-    "wprun":"./node_modules/.bin/webpack"
+    "wprun":"./node_modules/.bin/webpack",
+    "wprunwatch":"./node_modules/.bin/webpack --watch"
   },
   "dependencies": {
     "babel-preset-env": "^1.6.1",

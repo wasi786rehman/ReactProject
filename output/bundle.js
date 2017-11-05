@@ -958,7 +958,7 @@ module.exports = shallowEqual;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -984,17 +984,37 @@ var App = function (_React$Component) {
     function App() {
         _classCallCheck(this, App);
 
-        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
+
+        _this.state = { stage: 1 };
+
+        return _this;
     }
 
     _createClass(App, [{
-        key: 'render',
+        key: "render",
         value: function render() {
-            return _react2.default.createElement(
-                'h1',
-                null,
-                'hello Moto '
+            var v = this.state.stage;
+            if (v == 2) return _react2.default.createElement(App1, { name: this.refs.clientName.value });else return _react2.default.createElement(
+                "div",
+                { className: "containerApp" },
+                _react2.default.createElement(
+                    "div",
+                    { className: "containerHeader" },
+                    "Add Client"
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "containerBody" },
+                    v == 1 ? _react2.default.createElement(Stage1, { handleToUpdate: this.handleToUpdate.bind(this) }) : _react2.default.createElement(Stage2, null)
+                )
             );
+        }
+    }, {
+        key: "handleToUpdate",
+        value: function handleToUpdate(value) {
+            alert("dsfsd");
+            alert(value);
         }
     }]);
 
@@ -1002,6 +1022,110 @@ var App = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = App;
+
+var Stage1 = function (_React$Component2) {
+    _inherits(Stage1, _React$Component2);
+
+    function Stage1() {
+        _classCallCheck(this, Stage1);
+
+        var _this2 = _possibleConstructorReturn(this, (Stage1.__proto__ || Object.getPrototypeOf(Stage1)).call(this));
+
+        _this2.state = { stage: 1 };
+
+        return _this2;
+    }
+
+    _createClass(Stage1, [{
+        key: "render",
+        value: function render() {
+            var handleToUpdate = this.props.handleToUpdate;
+            return _react2.default.createElement(
+                "div",
+                null,
+                "Client Name *",
+                _react2.default.createElement("br", null),
+                _react2.default.createElement("input", { type: "text", className: "form-control", ref: "clientName" }),
+                "Select Event/s..*",
+                _react2.default.createElement("br", null),
+                _react2.default.createElement("input", { type: "checkbox" }),
+                "Dealer",
+                _react2.default.createElement("br", null),
+                _react2.default.createElement("input", { type: "checkbox" }),
+                "Contract",
+                _react2.default.createElement("br", null),
+                _react2.default.createElement("input", { type: "checkbox" }),
+                "Claims",
+                _react2.default.createElement("br", null),
+                _react2.default.createElement("input", { type: "button", className: "btn btn-default alignleft", value: "ok", onClick: function onClick() {
+                        return handleToUpdate('someghgjkVar');
+                    } })
+            );
+        }
+    }, {
+        key: "okClick",
+        value: function okClick() {
+            var m = this.state.stage;
+            var q = this.refs.clientName.value;
+        }
+    }]);
+
+    return Stage1;
+}(_react2.default.Component);
+
+var Stage2 = function (_React$Component3) {
+    _inherits(Stage2, _React$Component3);
+
+    function Stage2() {
+        _classCallCheck(this, Stage2);
+
+        var _this3 = _possibleConstructorReturn(this, (Stage2.__proto__ || Object.getPrototypeOf(Stage2)).call(this));
+
+        _this3.state = { stage: 2 };
+        return _this3;
+    }
+
+    _createClass(Stage2, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                null,
+                "you have selected ",
+                this.props.name
+            );
+        }
+    }]);
+
+    return Stage2;
+}(_react2.default.Component);
+
+var Stage3 = function (_React$Component4) {
+    _inherits(Stage3, _React$Component4);
+
+    function Stage3() {
+        _classCallCheck(this, Stage3);
+
+        var _this4 = _possibleConstructorReturn(this, (Stage3.__proto__ || Object.getPrototypeOf(Stage3)).call(this));
+
+        _this4.state = { stage: 1 };
+        return _this4;
+    }
+
+    _createClass(Stage3, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                null,
+                "you have selected ",
+                this.props.name
+            );
+        }
+    }]);
+
+    return Stage3;
+}(_react2.default.Component);
 
 /***/ },
 /* 16 */
