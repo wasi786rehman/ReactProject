@@ -2,7 +2,7 @@ var path=require('path');
 module.exports={
 entry:'./Src/App.js',
 output:{
-path:'/output',
+path:'./output',
 filename:'bundle.js',
 },
 module:{
@@ -12,7 +12,7 @@ module:{
             exclude:/node_modules/,
             loader:["babel-loader"],
             query:{
-                presets:["es2015","stage-0","react"]
+                presets:["env","stage-1","react"]
             }
         }
     ]
