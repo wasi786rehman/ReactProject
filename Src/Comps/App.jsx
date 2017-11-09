@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+    BrowserRouter as Router,
+    Link,
+    Route,
+    Switch,
+  } from 'react-router-dom';
 export default class App extends React.Component{
     constructor()
     {
@@ -31,9 +37,6 @@ export default class App extends React.Component{
     }
     handleToUpdate(value,v,events)
     {
-debugger;
-
-
 
 this.setState({stage:value,heading:"Confirm Client",v:v});
 
@@ -112,3 +115,5 @@ class Stage3 extends React.Component{
         );
     }
 }
+
+
